@@ -15,7 +15,7 @@ PyenvMode=$(sed "s/ //g" <<< $1)
 VirtualEnvPath=$(sed "s/ //g" <<< $2)
 Python3Version=$(sed "s/ //g" <<< $3)
 
-if [ $PyenvMode == "delete" ]
+if [[ $PyenvMode == "delete" ]]
 then
     if [ $# -ne 2 ]
     then
@@ -25,15 +25,15 @@ then
 
     echo "    Deleting VirtualEnv $VirtualEnvPath... Note that this does not delete the directory or files contained within, just removes the virtual python environment.\n"
     pyenv virtualenv-delete $VirtualEnvPath
-elif [ $PyenvMode == "create" ]
+elif [[ $PyenvMode == "create" ]]
 then
-    if [ $# -ne 3 ]
+    if [[ $# -ne 3 ]]
     then
         echo "\n    Wrong number of arguments detected, refer to usage instructions below.\n"
         print_usage;
     fi
 
-    if [ -d "$VirtualEnvPath" ]
+    if [[ -d "$VirtualEnvPath" ]]
     then
         echo "    $VirtualEnvPath directory exists already. Please check to see if a python3 virtual environment has already been created for this directory. Exiting..."
         exit 1
@@ -44,7 +44,7 @@ then
     mkdir $VirtualEnvPath
 
     cd $VirtualEnvPath
-    VirtualEnvName=part1=$(dirname "$VirtualEnvPath")
+    VirtualEnvName=$(dirname "$VirtualEnvPath")
 
     pyenv virtualenv $Python3Version $VirtualEnvName
     pyenv local $VirtualEnvName
