@@ -44,7 +44,8 @@ then
     mkdir $VirtualEnvPath
 
     cd $VirtualEnvPath
-    VirtualEnvName=$(dirname "$VirtualEnvPath")
+    VirtualEnvName=$(basename "$VirtualEnvPath")
+    echo "venv name: $VirtualEnvName"
 
     pyenv virtualenv $Python3Version $VirtualEnvName
     pyenv local $VirtualEnvName
