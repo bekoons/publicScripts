@@ -16,6 +16,13 @@ PyenvMode=$(sed "s/ //g" <<< $1)
 VirtualEnvPath=$(sed "s/ //g" <<< $2)
 Python3Version=$(sed "s/ //g" <<< $3)
 
+# Check if the specified Python version is installed in pyenv
+if ! pyenv versions --bare | grep -q "^${Python3Version}$"; then
+  echo "\n    The specified Python version ${Python3Version} is not installed in pyenv."
+  echo "    Please install it using 'pyenv install -v ${Python3Version}' before running this script.\n"
+  exit 1
+fi
+
 if [[ $PyenvMode == "delete" ]]
 then
     if [ $# -ne 2 ]
