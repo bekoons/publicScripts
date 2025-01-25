@@ -1,6 +1,7 @@
 #!/bin/sh
 # Script for setting up a new python virtual environment for use when a specific version of python is required.
 # Defaults to Python3 versions.
+# Assumes you have already installed the version of python you want to use within pyenv using 'pyenv install -v $version'
 
 DirectoryName=''
 Python3Version=''
